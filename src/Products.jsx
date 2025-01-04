@@ -89,7 +89,7 @@ function Products() {
     { _id: "5", name: "Smart Watches" },
   ];
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState("1");
+  const [selectedCategoryId, setSelectedCategoryId] = useState("ALL");
   const filteredProducts =
     selectedCategoryId === "ALL"
       ? products
@@ -106,16 +106,12 @@ function Products() {
     //     "Content-Type": "application/json",
     //   },
     // });
-    // console.log(data);
-    // data
-    //   .then((res) => {
-    //     console.log(res);
-    //     const dataPromise = res.json();
-    //     console.log(dataPromise);
-    //     return dataPromise;
-    //   })
+    // data.then((res) => {
+    //   return res.json();
+    // })
     //   .then((data) => console.log(data))
     //   .catch((err) => console.log(err));
+
     try {
       const res = await fetch("http://localhost:8000/api/products", {
         method: "GET",
@@ -125,16 +121,20 @@ function Products() {
       });
       const data = await res.json();
       console.log(data);
+
+
     } catch (error) {
-      console.log(error);      
+      console.log(error);
+
     }
   };
+
 
   return (
     <section className="px-8 py-8">
       <h2 className="text-4xl font-bold">Our Top Products</h2>
       <div>
-        <Button onClick={() => getProducts()}>GET Products</Button>
+        <Button onClick={() => getProducts()} >GET Products</Button>
       </div>
       <Separator className="mt-2" />
       <div className="mt-4 flex items-center gap-4">
