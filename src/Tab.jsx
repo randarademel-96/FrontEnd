@@ -1,4 +1,5 @@
 function Tab(props) {
+
   const handleClick = (e) => {
     props.onTabClick(props._id);
   };
