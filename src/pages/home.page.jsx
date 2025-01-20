@@ -10,7 +10,7 @@ function HomePage() {
 
   const handleAddToCart = (product) => {
 
-    const foundItem = cart.find((item) => item.id === product.id);
+    const foundItem = cart.find((item) => item.product.id === product.id);
     if (foundItem) {//spread operator (...) taking the cart array elements and adding to to new array and set
       setCart(
         cart.map((item) =>
