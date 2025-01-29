@@ -13,10 +13,10 @@ function HomePage() {
     const foundItem = cart.find((item) => item.product.id === product.id);
     if (foundItem) {//spread operator (...) taking the cart array elements and adding to to new array and set
       setCart(
-        cart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+        cart.map((cartItem) =>
+          cartItem.product.id === product.id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
         )
       );
       return;
