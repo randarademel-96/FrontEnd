@@ -63,37 +63,37 @@ function Products(props) {
           ))}
         </div>
         <div className="grid grid-cols-4 gap-4 mt-4">
-          <Skeleton className="h-80"/>
-          <Skeleton className="h-80"/>
-          <Skeleton className="h-80"/>
+          <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
         </div>
       </section>
     );
   }
 
-if(error.isError){
-  return (
-    <section className="px-8 py-8">
-      <h2 className="text-4xl font-bold">Our Top Products</h2>
-      <Separator className="mt-2" />
-      <div className="mt-4 flex items-center gap-4">
-        {categories.map((category) => (
-          <Tab
-            key={category._id}
-            _id={category._id}
-            selectedCategoryId={selectedCategoryId}
-            name={category.name}
-            onTabClick={handleTabClick}
-          />
-        ))}
-      </div>
-      <div className="mt-4">
-        <p className="text-red-500">{error.message}</p>
-      </div>
-      
-    </section>
-  );
-}
+  if (error.isError) {
+    return (
+      <section className="px-8 py-8">
+        <h2 className="text-4xl font-bold">Our Top Products</h2>
+        <Separator className="mt-2" />
+        <div className="mt-4 flex items-center gap-4">
+          {categories.map((category) => (
+            <Tab
+              key={category._id}
+              _id={category._id}
+              selectedCategoryId={selectedCategoryId}
+              name={category.name}
+              onTabClick={handleTabClick}
+            />
+          ))}
+        </div>
+        <div className="mt-4">
+          <p className="text-red-500">{error.message}</p>
+        </div>
+
+      </section>
+    );
+  }
 
   return (
     <section className="px-8 py-8">
