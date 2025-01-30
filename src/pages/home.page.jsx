@@ -10,19 +10,18 @@ function HomePage() {
 
   const handleAddToCart = (product) => {
 
-    const foundItem = cart.find((item) => item.product.id === product.id);
-    if (foundItem) {//spread operator (...) taking the cart array elements and adding to to new array and set
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.product.id === product.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
+    const foundItem = cart.find((item) => item.product._id === product._id);
+    if (foundItem) {
+      setCart(cart.map((item) =>
+        item.product._id === product._id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
       );
       return;
     }
     setCart([...cart, { product: product, quantity: 1 }]);
-  }//add new item to the cart array with quantity 1.
+  };
 
   const getCartQuantity = () => {
     let count = 0;
