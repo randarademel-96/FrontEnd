@@ -12,10 +12,10 @@ function HomePage() {
 
     const foundItem = cart.find((item) => item.product._id === product._id);
     if (foundItem) {
-      setCart(cart.map((item) =>
-        item.product._id === product._id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+      setCart(cart.map((cartItem) =>
+        cartItem.product._id === product._id
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
       )
       );
       return;
