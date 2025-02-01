@@ -4,7 +4,7 @@ import Tab from "./Tab";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
-import { getProducts } from "@/lib/api";
+import { getProducts, getCategories } from "@/lib/api";
 import { Skeleton } from "./components/ui/skeleton";
 
 
@@ -14,14 +14,9 @@ function Products(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({ isError: false, message: "" });
 
-  const categories = [
-    { _id: "ALL", name: "All" },
-    { _id: "1", name: "Headphones" },
-    { _id: "2", name: "Earbuds" },
-    { _id: "3", name: "Speakers" },
-    { _id: "4", name: "Mobile Phones" },
-    { _id: "5", name: "Smart Watches" },
-  ];
+  const [categories, setCategories] = useState([]);
+
+
 
   const [selectedCategoryId, setSelectedCategoryId] = useState("ALL");
 
@@ -34,6 +29,14 @@ function Products(props) {
     setSelectedCategoryId(_id);
   };
 
+  useEffect(() => {
+    getCategories().then((data) => {
+      setCategories(data);
+    })
+      .catch((error) => {
+        setError({ isError: true, message: error.message });
+      });
+  }, []);
 
   useEffect(() => {
     getProducts().then((data) => {
@@ -52,7 +55,7 @@ function Products(props) {
         <h2 className="text-4xl font-bold">Our Top Products</h2>
         <Separator className="mt-2" />
         <div className="mt-4 flex items-center gap-4">
-          {categories.map((category) => (
+          {[{ _id: "ALL", name: "All" }, ...categories].map((category) => (
             <Tab
               key={category._id}
               _id={category._id}
@@ -77,7 +80,7 @@ function Products(props) {
         <h2 className="text-4xl font-bold">Our Top Products</h2>
         <Separator className="mt-2" />
         <div className="mt-4 flex items-center gap-4">
-          {categories.map((category) => (
+          {[{ _id: "ALL", name: "All" }, ...categories].map((category) => (
             <Tab
               key={category._id}
               _id={category._id}
@@ -100,7 +103,7 @@ function Products(props) {
       <h2 className="text-4xl font-bold">Our Top Products</h2>
       <Separator className="mt-2" />
       <div className="mt-4 flex items-center gap-4">
-        {categories.map((category) => (
+        {[{ _id: "ALL", name: "All" }, ...categories].map((category) => (
           <Tab
             key={category._id}
             _id={category._id}
