@@ -22,7 +22,7 @@ function ProductCard(props) {
 
   return (
     <Card>
-      {count}
+      
       <div className="h-80 bg-card rounded-lg p-4 relative">
         <img src={props.image} className="block" />
       </div>
