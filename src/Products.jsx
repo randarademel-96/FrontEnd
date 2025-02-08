@@ -113,7 +113,7 @@ function Products(props) {
           />
         ))}
       </div>
-      <ProductCards handleAddToCart={props.handleAddToCart} products={filteredProducts} />
+      <ProductCards products={filteredProducts} />
     </section>
   );
 }
